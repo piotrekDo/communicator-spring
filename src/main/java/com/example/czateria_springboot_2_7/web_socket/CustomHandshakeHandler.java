@@ -11,12 +11,15 @@ import java.util.UUID;
 public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 
     @Override
-    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
+    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes ) {
         String userName = request.getURI().toString().split("user=")[1];
-
         String uuid = UUID.randomUUID().toString();
         StompPrincipal stompPrincipal = new StompPrincipal(uuid);
         stompPrincipal.setUserName(userName);
         return stompPrincipal;
     }
+
+
+
+
 }

@@ -28,14 +28,14 @@ public class Initializer {
         userRoleRepository.save(moderatorRole);
         userRoleRepository.save(adminRole);
 
-        AppUser userPiotrek = new AppUser("piotrek", "piotrek@fake.com", "piotrek");
+        AppUser userPiotrek = new AppUser("piotrek", "piotrek@fake.com", "");
         userPiotrek.setUserPassword(passwordEncoder.encode(userPiotrek.getUserPassword()));
         userPiotrek.getUserRoles().add(userRole);
         userPiotrek.getUserRoles().add(moderatorRole);
         userPiotrek.getUserRoles().add(adminRole);
         appUserRepository.save(userPiotrek);
 
-        AppUser user1 = new AppUser("user1", "user1@fake.com", "123");
+        AppUser user1 = new AppUser("user1", "user1@fake.com", "");
         user1.setUserPassword(passwordEncoder.encode(user1.getUserPassword()));
         user1.getUserRoles().add(userRole);
         appUserRepository.save(user1);
