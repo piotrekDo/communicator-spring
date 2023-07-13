@@ -12,6 +12,7 @@ public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 
     @Override
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes ) {
+        System.out.println("HANDSHAKE HANDLER");
         String userName = request.getURI().toString().split("user=")[1];
         String uuid = UUID.randomUUID().toString();
         StompPrincipal stompPrincipal = new StompPrincipal(uuid);

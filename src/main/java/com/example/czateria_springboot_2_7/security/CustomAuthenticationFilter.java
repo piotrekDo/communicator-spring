@@ -82,12 +82,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withClaim("roles", roles)
                 .sign(getAlgorithm());
 
-//        String refreshToken = JWT.create()
-//                .withSubject(user.getUsername())
-//                .withExpiresAt(setHours(23))
-//                .withIssuer(request.getRequestURL().toString())
-//                .sign(getAlgorithm());
-
         AuthorizationResponse authorizationResponse = new AuthorizationResponse(
                 user.getUsername(),
                 roles,

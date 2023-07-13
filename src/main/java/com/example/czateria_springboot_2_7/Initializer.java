@@ -39,5 +39,10 @@ public class Initializer {
         user1.setUserPassword(passwordEncoder.encode(user1.getUserPassword()));
         user1.getUserRoles().add(userRole);
         appUserRepository.save(user1);
+
+        AppUser user2 = new AppUser("user2", "user1@fake.com", "");
+        user2.setUserPassword(passwordEncoder.encode(user2.getUserPassword()));
+        user2.getUserRoles().add(userRole);
+        appUserRepository.save(user2);
     }
 }
