@@ -1,24 +1,24 @@
 package com.example.czateria_springboot_2_7.public_chat;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+public class PrivateMessage extends ChatMessage<String>{
 
-@Data
-public class PrivateMessage {
-
-    private String senderName;
-    private String senderStompName;
     private String receiverStompName;
-    private String message;
-    private String time;
 
-    public PrivateMessage(String senderName, String senderStompName, String receiverStompName, String message) {
-        this.senderName = senderName;
-        this.senderStompName = senderStompName;
+    public PrivateMessage(String senderName, String senderStompName, String message, String receiverStompName) {
+        super(Type.MESSAGE, senderName, senderStompName, message);
         this.receiverStompName = receiverStompName;
-        this.message = message;
-        this.time = OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC).toString();
+    }
+
+    public String getReceiverStompName() {
+        return receiverStompName;
+    }
+
+    public void setReceiverStompName(String receiverStompName) {
+        this.receiverStompName = receiverStompName;
     }
 }

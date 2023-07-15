@@ -1,6 +1,6 @@
 package com.example.czateria_springboot_2_7.security;
 
-import org.springframework.http.HttpHeaders;
+import lombok.AllArgsConstructor;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -10,6 +10,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class WebSocketHandshakeInterceptor implements HandshakeInterceptor {
 
     @Override
@@ -22,6 +23,5 @@ public class WebSocketHandshakeInterceptor implements HandshakeInterceptor {
     @Override
     public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
                                WebSocketHandler wsHandler, Exception exception) {
-
     }
 }

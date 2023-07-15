@@ -19,8 +19,4 @@ public class CustomHandshakeHandler extends DefaultHandshakeHandler {
         stompPrincipal.setUserName(userName);
         return stompPrincipal;
     }
-
-
-
-
 }

@@ -3,6 +3,8 @@ package com.example.czateria_springboot_2_7.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -24,13 +26,10 @@ public class SocketAuthenticationInterceptor implements ChannelInterceptor {
 
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
-        System.out.println("CONFIGURER INBOUND INTERCEPTOR");
+        System.out.println("AUTHENTICATION INTERCEPTOR");
         StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
         assert accessor != null;
         StompCommand command = accessor.getCommand();
-        System.out.println(command);
-        System.out.println(accessor.getDestination());
-
 
         if (command != null && !(command.equals(DISCONNECT) || command.equals(UNSUBSCRIBE))) {
             String authorization = accessor.getFirstNativeHeader("Authorization");
