@@ -24,9 +24,10 @@ public class WebSocketEventListener {
     public void handleSessionSubscribe(SessionSubscribeEvent event) {
         Message<byte[]> message = event.getMessage();
         String destination = service.extractDestination(message);
-        if (destination.equals("/global")) {
+        if (destination.startsWith("/global")) {
             String userName = event.getUser().getName();
-            List<String> simpUsers = service.getSimpUsers(simpUserRegistry.getUsers());
+            List<String> simpUsers = service.getSimpUsersByDestination(simpUserRegistry.getUsers(), destination);
+            System.out.println(simpUsers);
             simpMessagingTemplate.convertAndSend(destination,
                     new SystemMessage<List<String>>("SYSTEM-JOIN", userName, simpUsers));
         }

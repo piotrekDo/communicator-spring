@@ -1,6 +1,7 @@
 package com.example.czateria_springboot_2_7.public_chat;
 
 import lombok.AllArgsConstructor;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -18,6 +19,12 @@ public class PublicChatController {
     @SendTo("/global")
     PublicChatMessage sendPublicChatMessage(PublicChatMessage message) {
         return message;
+    }
+
+    @MessageMapping("/global/{path}")
+    void sendPublicCustomChatMessage(@DestinationVariable String path, PublicChatMessage message) {
+        String dest = "/global/" + path;
+        simpMessagingTemplate.convertAndSend(dest, message);
     }
 
     @MessageMapping("/priv")
